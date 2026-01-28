@@ -318,8 +318,8 @@ button:hover {
         noBtn.innerText = "She's a crazy hot bitch";
         noBtn.onmouseover = null;
       } else {
-  const popup = document.getElementById("error-overlay");
-  popup.style.display = "flex";
+  document.getElementById("error-overlay").style.display = "flex";
+  document.getElementById("error-overlay").style.background = "red";
 }
 
 
@@ -366,6 +366,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
