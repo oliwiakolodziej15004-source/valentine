@@ -5,77 +5,123 @@
   <title>Be My Valentine 💘</title>
 
   <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: "Comic Sans MS", "Verdana", cursive;
-    }
+   body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at top, #5b2cff22, transparent 60%),
+    linear-gradient(135deg, #0b0b12, #120f24);
+  font-family: "Verdana", "Arial", sans-serif;
+  overflow: hidden;
+  color: #eae6ff;
+}
 
-    .card {
-      background: #fff0f6;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 20px hotpink, 0 0 40px deeppink;
-      border: 3px dashed hotpink;
-      max-width: 420px;
-    }
 
-    .valentine-gif {
-      width: 180px;
-      margin-bottom: 15px;
-      border-radius: 12px;
-    }
+  .card {
+  background: rgba(15, 12, 30, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 42px;
+  border-radius: 22px;
+  text-align: center;
+  max-width: 420px;
+  border: 1px solid #5b2cff66;
+  box-shadow:
+    0 0 30px #5b2cff55,
+    0 0 70px #a88bff22;
+}
 
-    h1 {
-      font-size: 32px;
-      background: linear-gradient(
-        90deg,
-        hotpink,
-        deeppink,
-        violet,
-        hotpink
-      );
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: sparkle 3s linear infinite;
-      margin: 10px 0;
-    }
+.valentine-gif {
+  width: 180px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow:
+    0 0 15px #5b2cff88,
+    0 0 35px #a88bff55;
+  animation: float 5s ease-in-out infinite;
+}
 
-    @keyframes sparkle {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
-    }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+  
+
+h1 {
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    #a88bff,
+    #5b2cff,
+    #a88bff
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: cyberGlow 5s linear infinite;
+}
+
+@keyframes cyberGlow {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
 
     p {
       font-size: 18px;
     }
 
     button {
-      padding: 12px 22px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      margin: 10px;
-      font-family: "Comic Sans MS", cursive;
-      box-shadow: inset 0 0 5px white, 0 5px 0 deeppink;
-    }
+  padding: 12px 26px;
+  font-size: 15px;
+  border-radius: 14px;
+  cursor: pointer;
+  margin: 12px;
+  background: transparent;
+  border: 1px solid #a88bffaa;
+  color: #eae6ff;
+  font-family: "Verdana", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 12px #5b2cff44,
+    inset 0 0 12px #5b2cff22;
+  transition: all 0.3s ease;
+}
 
-    #yes {
-      background-color: #ff4d6d;
-      color: white;
-    }
+button:hover {
+  box-shadow:
+    0 0 25px #a88bff,
+    inset 0 0 20px #5b2cff;
+}
 
-    #no {
-      background-color: #ddd;
-      position: relative;
-    }
+#yes {
+  border-color: #a88bff;
+}
+
+#no {
+  border-color: #5b2cff;
+}
+
+   .scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
   </style>
 </head>
 
@@ -137,7 +183,9 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
   </script>
+<div class="scanlines"></div>
 
 </body>
 </html>
+
 
