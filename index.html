@@ -324,7 +324,33 @@ button:hover {
 
   <script>
     let yesCount = 0;
+let errorStep = 0;
 
+const errorMessages = [
+  "Critical Error:<br>There was never a version of reality<br>where I didn’t choose you.",
+  "System Warning:<br>You make ordinary days<br>feel like home.",
+  "Fatal Error:<br>Loving you became my favorite habit."
+];
+    let typingInterval;
+let isTyping = false;
+
+function typeMessage(element, message, speed = 40) {
+  let index = 0;
+  element.innerHTML = "";
+  isTyping = true;
+
+  clearInterval(typingInterval);
+
+  typingInterval = setInterval(() => {
+    if (index < message.length) {
+      element.innerHTML += message.charAt(index);
+      index++;
+    } else {
+      clearInterval(typingInterval);
+      isTyping = false;
+    }
+  }, speed);
+}
   function yesClick() {
   yesCount++;
 
@@ -361,9 +387,11 @@ button:hover {
     setTimeout(() => yesBtn.style.transform = "scale(1)", 200);
 
   } else {
-    // Final confirmation → error popup
-    document.getElementById("error-overlay").style.display = "flex";
-  }
+  errorStep = 0;
+const errorText = document.getElementById("error-text");
+document.getElementById("error-overlay").style.display = "flex";
+typeMessage(errorText, errorMessages[errorStep]);
+}
 }
 
     function moveNo() {
@@ -396,26 +424,42 @@ button:hover {
 }
 
    function closeError() {
-  document.body.innerHTML = `
-    <div class="final-screen hearts-bg">
-      <div class="final-glow"></div>
+  const errorText = document.getElementById("error-text");
 
-      <div class="final-content">
-        <h1 class="final-title">
-          💜 CONNECTION ESTABLISHED 💜<br>
-          O + N FOREVER ENABLED
-        </h1>
-      </div>
+  // If message is still typing, finish it instantly
+  if (isTyping) {
+    clearInterval(typingInterval);
+    errorText.innerHTML = errorMessages[errorStep];
+    isTyping = false;
+    return;
+  }
 
-      <div class="particles">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
+  // Move to next message
+  errorStep++;
+
+  if (errorStep < errorMessages.length) {
+    typeMessage(errorText, errorMessages[errorStep]);
+  } else {
+    // All messages shown → final screen
+    document.body.innerHTML = `
+      <div class="final-screen hearts-bg">
+        <div class="final-glow"></div>
+
+        <div class="final-content">
+          <h1 class="final-title">
+            💜 CONNECTION ESTABLISHED 💜<br>
+            O + N FOREVER ENABLED
+          </h1>
+        </div>
+
+        <div class="particles">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  }
 }
-
-
 
   </script>
 <div class="scanlines"></div>
@@ -428,11 +472,7 @@ button:hover {
 
     <div class="error-content">
       <div class="error-icon">🖥️</div>
-      <p>
-        <strong>Error:</strong><br>
-        Norbert.exe has agreed<br>
-        to give his heart to Olivia.exe forever💜
-      </p>
+      <p id="error-text"></p>
     </div>
 
     <button class="error-btn" onclick="closeError()">OK</button>
@@ -441,6 +481,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
