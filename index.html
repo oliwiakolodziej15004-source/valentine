@@ -326,32 +326,32 @@ button:hover {
     let yesCount = 0;
 
     function yesClick() {
-      yesCount++;
+  yesCount++;
 
-      const question = document.getElementById("question");
-      const noBtn = document.getElementById("no");
-if (yesCount === 1) {
-  question.innerText = "Wait... are you sure you can handle her?";
+  const question = document.getElementById("question");
+  const noBtn = document.getElementById("no");
 
-  // Reset No button position
-  noBtn.style.transform = "translate(0, 0)";
-  noBtn.onmouseover = null;
+  if (yesCount === 1) {
+    question.innerText = "Wait... are you sure you can handle her?";
 
-  // Turn No into a heart 🤍
-  noBtn.innerHTML = "🤍";
-  noBtn.style.fontSize = "28px";
-  noBtn.style.border = "none";
-  noBtn.style.cursor = "default";
-  noBtn.disabled = true;
+    // Reset No button position
+    noBtn.style.transform = "translate(0, 0)";
+    noBtn.onmouseover = null;
 
-  // 💥 Explode into mini hearts
-  explodeHeart(noBtn);
+    // Turn No into a heart 🤍
+    noBtn.innerHTML = "🤍";
+    noBtn.style.fontSize = "28px";
+    noBtn.style.border = "none";
+    noBtn.style.cursor = "default";
+    noBtn.disabled = true;
+
+    // 💥 Explode into mini hearts
+    explodeHeart(noBtn);
+  } else {
+    document.getElementById("error-overlay").style.display = "flex";
+  }
 }
 
-      } else {
-  document.getElementById("error-overlay").style.display = "flex";
-}
-    }
 
     function moveNo() {
       const noBtn = document.getElementById("no");
@@ -428,6 +428,7 @@ if (yesCount === 1) {
 
 </body>
 </html>
+
 
 
 
