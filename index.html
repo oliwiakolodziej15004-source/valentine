@@ -121,6 +121,59 @@ button:hover {
     transparent 4px
   );
 }
+/* Windows-style error popup */
+.error-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-window {
+  width: 340px;
+  background: #1a162f;
+  border: 1px solid #a88bff;
+  box-shadow: 0 0 30px #5b2cff;
+  font-family: "Verdana", sans-serif;
+  color: #eae6ff;
+}
+
+.error-title {
+  background: linear-gradient(90deg, #5b2cff, #a88bff);
+  color: black;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.error-content {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  font-size: 13px;
+}
+
+.error-icon {
+  font-size: 32px;
+}
+
+.error-btn {
+  margin: 0 12px 12px;
+  padding: 6px 18px;
+  font-size: 13px;
+  background: #a88bff;
+  border: none;
+  cursor: pointer;
+}
 
   </style>
 </head>
@@ -156,24 +209,9 @@ button:hover {
         noBtn.innerText = "Are you sure? 🤨";
         noBtn.onmouseover = null;
       } else {
-        document.body.innerHTML = `
-          <div style="
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:#ff4d6d;
-            color:white;
-            font-family:'Comic Sans MS', cursive;
-            text-align:center;
-          ">
-            <h1>
-              YAYYYY 💖🥰<br>
-              Best Valentine EVER 💘
-            </h1>
-          </div>
-        `;
-      }
+  document.getElementById("error-overlay").classList.remove("hidden");
+}
+
     }
 
     function moveNo() {
@@ -182,10 +220,54 @@ button:hover {
       const y = Math.random() * 200 - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
+    function closeError() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#0b0b12;
+      color:#eae6ff;
+      font-family:'Verdana', sans-serif;
+      text-align:center;
+    ">
+      <h1 style="
+        background: linear-gradient(90deg, #a88bff, #5b2cff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      ">
+        💜 SYSTEM MESSAGE 💜<br>
+        VALENTINE CONFIRMED
+      </h1>
+    </div>
+  `;
+}
+
   </script>
 <div class="scanlines"></div>
+<div id="error-overlay" class="error-overlay hidden">
+  <div class="error-window">
+    <div class="error-title">
+      <span>❌ Error</span>
+      <span class="error-close">✕</span>
+    </div>
+
+    <div class="error-content">
+      <div class="error-icon">🖥️</div>
+      <p>
+        <strong>Error:</strong><br>
+        Norbert.exe was Olivia’s Valentine<br>
+        from the day they met.
+      </p>
+    </div>
+
+    <button class="error-btn" onclick="closeError()">OK</button>
+  </div>
+</div>
 
 </body>
 </html>
+
 
 
