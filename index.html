@@ -121,20 +121,6 @@ button:hover {
     transparent 4px
   );
 }
-/* Windows-style error popup */
-.error-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.hidden {
-  display: none;
-}
 
 .error-window {
   width: 340px;
@@ -174,6 +160,29 @@ button:hover {
   border: none;
   cursor: pointer;
 }
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+/* Windows-style error popup */
+.error-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
 
   </style>
 </head>
@@ -209,8 +218,10 @@ button:hover {
         noBtn.innerText = "Are you sure? 🤨";
         noBtn.onmouseover = null;
       } else {
-  document.getElementById("error-overlay").classList.remove("hidden");
+  const popup = document.getElementById("error-overlay");
+  popup.style.display = "flex";
 }
+
 
     }
 
@@ -246,7 +257,7 @@ button:hover {
 
   </script>
 <div class="scanlines"></div>
-<div id="error-overlay" class="error-overlay hidden">
+<div id="error-overlay" class="error-overlay">
   <div class="error-window">
     <div class="error-title">
       <span>❌ Error</span>
@@ -268,6 +279,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
