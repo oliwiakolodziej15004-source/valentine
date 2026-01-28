@@ -325,33 +325,46 @@ button:hover {
   <script>
     let yesCount = 0;
 
-    function yesClick() {
+  function yesClick() {
   yesCount++;
 
   const question = document.getElementById("question");
+  const yesBtn = document.getElementById("yes");
   const noBtn = document.getElementById("no");
 
   if (yesCount === 1) {
-    question.innerText = "Wait... are you sure you can handle her?";
+    // First confirmation
+    question.innerText = "Really?";
+    yesBtn.innerText = "Of course!";
 
-    // Reset No button position
+    // 💓 Yes button pulse
+    yesBtn.style.transform = "scale(1.1)";
+    setTimeout(() => yesBtn.style.transform = "scale(1)", 150);
+
+    // No → heart + explosion
     noBtn.style.transform = "translate(0, 0)";
     noBtn.onmouseover = null;
-
-    // Turn No into a heart 🤍
     noBtn.innerHTML = "🤍";
     noBtn.style.fontSize = "28px";
     noBtn.style.border = "none";
     noBtn.style.cursor = "default";
     noBtn.disabled = true;
-
-    // 💥 Explode into mini hearts
     explodeHeart(noBtn);
+
+  } else if (yesCount === 2) {
+    // Second confirmation
+    question.innerText = "Are you super duper sure?";
+    yesBtn.innerText = "YES I'M SURE!";
+
+    // 💓 Yes button pulse again
+    yesBtn.style.transform = "scale(1.1)";
+    setTimeout(() => yesBtn.style.transform = "scale(1)", 150);
+
   } else {
+    // Final confirmation → error popup
     document.getElementById("error-overlay").style.display = "flex";
   }
 }
-
 
     function moveNo() {
       const noBtn = document.getElementById("no");
@@ -428,6 +441,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
