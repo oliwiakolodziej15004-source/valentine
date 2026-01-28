@@ -327,9 +327,9 @@ button:hover {
 let errorStep = 0;
 
 const errorMessages = [
-  "Critical Error:<br>There was never a version of reality<br>where I didn’t choose you.",
-  "System Warning:<br>You make ordinary days<br>feel like home.",
-  "Fatal Error:<br>Loving you became my favorite habit."
+  "Critical Error:\nThere was never a version of reality\nwhere I didn’t choose you.",
+  "System Warning:\nYou make ordinary days\nfeel like home.",
+  "Fatal Error:\nLoving you became my favorite habit."
 ];
     let typingInterval;
 let isTyping = false;
@@ -343,7 +343,14 @@ function typeMessage(element, message, speed = 40) {
 
   typingInterval = setInterval(() => {
     if (index < message.length) {
-      element.innerHTML += message.charAt(index);
+      const char = message.charAt(index);
+
+      if (char === "\n") {
+        element.innerHTML += "<br>";
+      } else {
+        element.innerHTML += char;
+      }
+
       index++;
     } else {
       clearInterval(typingInterval);
@@ -424,7 +431,7 @@ typeMessage(errorText, errorMessages[errorStep]);
 }
 
    function closeError() {
-  const errorText = document.getElementById("error-text");
+  const errorText.innerHTML = errorMessages[errorStep].replace(/\n/g, "<br>");
 
   // If message is still typing, finish it instantly
   if (isTyping) {
@@ -481,6 +488,7 @@ typeMessage(errorText, errorMessages[errorStep]);
 
 </body>
 </html>
+
 
 
 
