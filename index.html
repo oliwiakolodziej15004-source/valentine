@@ -183,6 +183,106 @@ button:hover {
   justify-content: center;
   z-index: 999;
 }
+.final-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: fadeIn 1.2s ease forwards;
+}
+.hearts-bg {
+  background: #0b0b12;
+  overflow: hidden;
+}
+
+.hearts-bg::before {
+  content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 40px;
+  opacity: 0.4;
+  animation: heartsFloat 12s linear infinite;
+}
+
+.hearts-bg::after {
+  content: "🤍 🤍 🤍 🤍 🤍 🤍";
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 120%;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 60px;
+  opacity: 0.25;
+  animation: heartsFloat 18s linear infinite;
+}
+
+@keyframes heartsFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-140%); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.final-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #a88bff55, transparent 70%);
+  filter: blur(40px);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+.final-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.final-title {
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #a88bff, #5b2cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #a88bff;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatUp 6s linear infinite;
+}
+
+.particles span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 35%; animation-delay: 1s; }
+.particles span:nth-child(3) { left: 50%; animation-delay: 2s; }
+.particles span:nth-child(4) { left: 65%; animation-delay: 3s; }
+.particles span:nth-child(5) { left: 80%; animation-delay: 4s; }
+.particles span:nth-child(6) { left: 90%; animation-delay: 5s; }
+
+@keyframes floatUp {
+  from { bottom: -10px; opacity: 0; }
+  10% { opacity: 0.6; }
+  to { bottom: 110%; opacity: 0; }
+}
 
   </style>
 </head>
@@ -214,8 +314,8 @@ button:hover {
       const noBtn = document.getElementById("no");
 
       if (yesCount === 1) {
-        question.innerText = "Wait... think carefully 😏";
-        noBtn.innerText = "Are you sure? 🤨";
+        question.innerText = "Wait... are you sure you can handle her?";
+        noBtn.innerText = "She's a crazy hot bitch";
         noBtn.onmouseover = null;
       } else {
   const popup = document.getElementById("error-overlay");
@@ -233,27 +333,24 @@ button:hover {
     }
     function closeError() {
   document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:#0b0b12;
-      color:#eae6ff;
-      font-family:'Verdana', sans-serif;
-      text-align:center;
-    ">
-      <h1 style="
-        background: linear-gradient(90deg, #a88bff, #5b2cff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      ">
-        💜 SYSTEM MESSAGE 💜<br>
-        VALENTINE CONFIRMED
-      </h1>
+    <div class="final-screen hearts-bg">
+      <div class="final-glow"></div>
+
+      <div class="final-content">
+        <h1 class="final-title">
+          💜 CONNECTION ESTABLISHED 💜<br>
+          O + N FOREVER ENABLED
+        </h1>
+      </div>
+
+      <div class="particles">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
     </div>
   `;
 }
+
 
   </script>
 <div class="scanlines"></div>
@@ -268,8 +365,8 @@ button:hover {
       <div class="error-icon">🖥️</div>
       <p>
         <strong>Error:</strong><br>
-        Norbert.exe was Olivia’s Valentine<br>
-        from the day they met.
+        Norbert.exe has agreed to give<br>
+        his heart to Olivia.exe forever💜
       </p>
     </div>
 
@@ -279,6 +376,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
