@@ -315,14 +315,11 @@ button:hover {
 
       if (yesCount === 1) {
         question.innerText = "Wait... are you sure you can handle her?";
-        noBtn.innerText = "She's a crazy hot bitch";
+        noBtn.innerText = "Are you brave enough?😏";
         noBtn.onmouseover = null;
       } else {
   document.getElementById("error-overlay").style.display = "flex";
-  document.getElementById("error-overlay").style.background = "red";
 }
-
-
     }
 
     function moveNo() {
@@ -331,15 +328,26 @@ button:hover {
       const y = Math.random() * 200 - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
-    function closeError() {
+   function closeError() {
   document.body.innerHTML = `
     <div class="final-screen hearts-bg">
-      <h1 style="color:white; font-size:40px;">
-        TEST SCREEN LOADED 🤍
-      </h1>
+      <div class="final-glow"></div>
+
+      <div class="final-content">
+        <h1 class="final-title">
+          💜 CONNECTION ESTABLISHED 💜<br>
+          O + N FOREVER ENABLED
+        </h1>
+      </div>
+
+      <div class="particles">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
     </div>
   `;
 }
+
 
 
   </script>
@@ -355,8 +363,8 @@ button:hover {
       <div class="error-icon">🖥️</div>
       <p>
         <strong>Error:</strong><br>
-        Norbert.exe has agreed to give<br>
-        his heart to Olivia.exe forever💜
+        Norbert.exe has agreed<br>
+        to give his heart to Olivia.exe forever💜
       </p>
     </div>
 
@@ -366,6 +374,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
