@@ -283,6 +283,24 @@ button:hover {
   10% { opacity: 0.6; }
   to { bottom: 110%; opacity: 0; }
 }
+/* Mini heart explosion */
+.mini-heart {
+  position: absolute;
+  font-size: 16px;
+  pointer-events: none;
+  animation: heartBurst 1s ease-out forwards;
+}
+
+@keyframes heartBurst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5);
+    opacity: 0;
+  }
+}
 
   </style>
 </head>
@@ -312,11 +330,24 @@ button:hover {
 
       const question = document.getElementById("question");
       const noBtn = document.getElementById("no");
+if (yesCount === 1) {
+  question.innerText = "Wait... are you sure you can handle her?";
 
-      if (yesCount === 1) {
-        question.innerText = "Wait... are you sure you can handle her?";
-        noBtn.innerText = "Are you brave enough?😏";
-        noBtn.onmouseover = null;
+  // Reset No button position
+  noBtn.style.transform = "translate(0, 0)";
+  noBtn.onmouseover = null;
+
+  // Turn No into a heart 🤍
+  noBtn.innerHTML = "🤍";
+  noBtn.style.fontSize = "28px";
+  noBtn.style.border = "none";
+  noBtn.style.cursor = "default";
+  noBtn.disabled = true;
+
+  // 💥 Explode into mini hearts
+  explodeHeart(noBtn);
+}
+
       } else {
   document.getElementById("error-overlay").style.display = "flex";
 }
@@ -328,6 +359,29 @@ button:hover {
       const y = Math.random() * 200 - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
+    function explodeHeart(element) {
+  const rect = element.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  for (let i = 0; i < 10; i++) {
+    const heart = document.createElement("span");
+    heart.className = "mini-heart";
+    heart.innerText = "💜";
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 30 + Math.random() * 30;
+
+    heart.style.left = centerX + "px";
+    heart.style.top = centerY + "px";
+    heart.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    heart.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+  }
+}
+
    function closeError() {
   document.body.innerHTML = `
     <div class="final-screen hearts-bg">
@@ -374,6 +428,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
