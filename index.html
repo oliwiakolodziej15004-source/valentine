@@ -430,13 +430,13 @@ typeMessage(errorText, errorMessages[errorStep]);
   }
 }
 
-   function closeError() {
-  const errorText.innerHTML = errorMessages[errorStep].replace(/\n/g, "<br>");
+  function closeError() {
+  const errorText = document.getElementById("error-text");
 
   // If message is still typing, finish it instantly
   if (isTyping) {
     clearInterval(typingInterval);
-    errorText.innerHTML = errorMessages[errorStep];
+    errorText.innerHTML = errorMessages[errorStep].replace(/\n/g, "<br>");
     isTyping = false;
     return;
   }
@@ -468,6 +468,7 @@ typeMessage(errorText, errorMessages[errorStep]);
   }
 }
 
+
   </script>
 <div class="scanlines"></div>
 <div id="error-overlay" class="error-overlay">
@@ -488,6 +489,7 @@ typeMessage(errorText, errorMessages[errorStep]);
 
 </body>
 </html>
+
 
 
 
