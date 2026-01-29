@@ -190,7 +190,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  animation: fadeIn 1.2s ease forwards;
+  animation: fadeIn 2.5s ease forwards;
 }
 .hearts-bg {
   background: #0b0b12;
@@ -301,6 +301,16 @@ button:hover {
     opacity: 0;
   }
 }
+.final-signature {
+  margin-top: 18px;
+  font-size: 14px;
+  opacity: 0;
+  letter-spacing: 1px;
+  font-style: italic;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 1.2s;
+}
+
 
   </style>
 </head>
@@ -452,12 +462,17 @@ typeMessage(errorText, errorMessages[errorStep]);
       <div class="final-screen hearts-bg">
         <div class="final-glow"></div>
 
-        <div class="final-content">
-          <h1 class="final-title">
-            💜 CONNECTION ESTABLISHED 💜<br>
-            O + N FOREVER ENABLED
-          </h1>
-        </div>
+       <div class="final-content">
+  <h1 class="final-title">
+    No more errors.<br>
+    Just us.
+  </h1>
+
+  <div class="final-signature">
+    From Olivia 🤍
+  </div>
+</div>
+
 
         <div class="particles">
           <span></span><span></span><span></span>
@@ -489,6 +504,7 @@ typeMessage(errorText, errorMessages[errorStep]);
 
 </body>
 </html>
+
 
 
 
