@@ -223,9 +223,6 @@ button:hover {
   animation: heartsFloat 18s linear infinite;
 }
 
-.hearts-bg::after,
-.hearts-bg::before,
-
 @keyframes heartsFloat {
   from { transform: translateY(0); }
   to { transform: translateY(-140%); }
@@ -338,6 +335,7 @@ button:hover {
   <script>
     let yesCount = 0;
 let errorStep = 0;
+let musicStarted = false;
 
 const errorMessages = [
   "Minor Error:\nWho calls their girlfriend princess?",
@@ -386,6 +384,13 @@ function typeMessage(element, message, speed = 40) {
 
   if (yesCount === 1) {
     // First confirmation
+    const music = document.getElementById("bg-music");
+if (music && !musicStarted) {
+  music.volume = 0.25;
+  music.play();
+  musicStarted = true;
+}
+
     question.innerText = "Really?";
     yesBtn.innerText = "Of course!";
 
@@ -490,6 +495,7 @@ typeMessage(errorText, errorMessages[errorStep]);
 
   </div>
 `;
+    
   }
 }
 
@@ -511,9 +517,13 @@ typeMessage(errorText, errorMessages[errorStep]);
     <button class="error-btn" onclick="closeError()">OK</button>
   </div>
 </div>
+<audio id="bg-music" loop>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
+
 
 
 
